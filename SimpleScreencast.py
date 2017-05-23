@@ -126,7 +126,10 @@ if args.command == "start":
 if args.command == "stop":
     Path("/tmp/SimpleScreencast").write_text("0")
 if args.command == "toggle":
-    if Path("/tmp/SimpleScreencast").read_text().find("1") == 0:
-        Path("/tmp/SimpleScreencast").write_text("0")
-    else:
+    try:
+        if Path("/tmp/SimpleScreencast").read_text().find("1") == 0:
+            Path("/tmp/SimpleScreencast").write_text("0")
+        else:
+            Path("/tmp/SimpleScreencast").write_text("1")
+    except:
         Path("/tmp/SimpleScreencast").write_text("1")
